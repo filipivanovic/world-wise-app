@@ -4,7 +4,7 @@ export default function Product() {
   return (
     <main className={styles.product}>
       <section>
-        <img src="../assets/img-1.jpg" alt="person with dog overlooking mountain with sunset" />
+        <img src="../../public/img-1.jpg" alt="person with dog overlooking mountain with sunset" />
         <div>
           <h2>About WorldWide.</h2>
           <p>
