@@ -6,6 +6,8 @@ import Pricing from './pages/Pricing.jsx'
 import PageNotFound from './pages/PageNotFound.jsx'
 import AppLayout from './pages/AppLayout.jsx'
 import Login from './pages/Login.jsx'
+import CityList from './components/CityList.jsx'
+import CountryList from './components/CountryList.jsx'
 
 const App = () => {
   return (
@@ -18,8 +20,8 @@ const App = () => {
         <Route path="*" element={<PageNotFound />} />
         <Route path="app" element={<AppLayout />}>
           <Route index element={<p>LIST</p>} />
-          <Route path="cities" element={<p>Cities</p>} />
-          <Route path="countries" element={<p>countries</p>} />
+          <Route path="cities" element={<CityList />} />
+          <Route path="countries" element={<CountryList />} />
           <Route path="form" element={<p>form</p>} />
         </Route>
       </Routes>
