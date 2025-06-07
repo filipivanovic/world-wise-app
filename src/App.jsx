@@ -36,17 +36,17 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route index element={<HomePage />} />
+        <Route path="product" element={<Product />} />
+        <Route path="pricing" element={<Pricing />} />
+        <Route path="login" element={<Login />} />
         <Route path="app" element={<AppLayout />}>
           <Route index element={<CityList cities={cities} isLoading={isLoading} />} />
           <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
           <Route path="cities/:id" element={<City />} />
           <Route path="countries" element={<CountryList cities={cities} isLoading={isLoading} />} />
           <Route path="form" element={<p>form</p>} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
