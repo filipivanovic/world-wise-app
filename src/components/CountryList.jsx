@@ -2,9 +2,10 @@ import styles from './CountryList.module.css'
 import Spinner from './Spinner.jsx'
 import CountryItem from './CountryItem.jsx'
 import Message from './Message.jsx'
+import { useCities } from '../context/CitiesContext.jsx'
 
-const CountryList = ({ cities, isLoading }) => {
-  // const countries = cities.filter(city => city.country)
+const CountryList = () => {
+  const { cities, isLoading } = useCities()
 
   const countries = cities.reduce((arr, city) => {
     if (!arr.map(el => el.country).includes(city.country)) {
