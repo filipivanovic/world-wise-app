@@ -1,17 +1,21 @@
 import styles from './Map.module.css'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useCities } from '../context/CitiesContext.jsx'
 
 const Map = () => {
-  const [searchParam, setSearchParam] = useSearchParams()
+  const [searchParam] = useSearchParams()
   const [mapPosition, setMapPosition] = useState([40, 0])
   const navigate = useNavigate()
   const { cities } = useCities()
 
   const mapLat = searchParam.get('lat')
   const mapLng = searchParam.get('lng')
+
+  useEffect(() => {
+    if (mapLat && mapLng) setMapPosition([mapLat, mapLng])
+  }, [mapLat, mapLng])
 
   return (
     <div
