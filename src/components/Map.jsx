@@ -34,9 +34,11 @@ const Map = () => {
 
   return (
     <div className={styles.mapContainer}>
-      <Button type={`position`} onClick={getPosition}>
-        {isLoadingPosition ? 'Loading...' : 'Use your location'}
-      </Button>
+      {!isLoadingPosition && (
+        <Button type={`position`} onClick={getPosition}>
+          {isLoadingPosition ? 'Loading...' : 'Use your location'}
+        </Button>
+      )}
       <MapContainer
         center={mapPosition}
         zoom={7}
