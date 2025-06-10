@@ -14,7 +14,7 @@ const Map = () => {
     getPosition
   } = useGeolocation()
   const [mapPosition, setMapPosition] = useState([40, 0])
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const { cities } = useCities()
 
   const mapLat = searchParam.get('lat')
@@ -25,6 +25,12 @@ const Map = () => {
       setMapPosition([mapLat, mapLng])
     }
   }, [mapLat, mapLng])
+
+  useEffect(() => {
+    if (geolocationPosition) {
+      setMapPosition([geolocationPosition.lat, geolocationPosition.lng])
+    }
+  }, [geolocationPosition])
 
   return (
     <div className={styles.mapContainer}>
