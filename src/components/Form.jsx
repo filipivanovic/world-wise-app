@@ -57,7 +57,7 @@ function Form() {
     fetchCity()
   }, [lat, lng])
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
     if (!cityName || !date) return
 
@@ -72,8 +72,8 @@ function Form() {
         lng
       }
     }
-    createCity(newCity)
-    navigate('/')
+    await createCity(newCity)
+    navigate('/app/cities')
   }
 
   if (isLoadingGeocoding) return <Spinner />
