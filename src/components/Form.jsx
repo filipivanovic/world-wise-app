@@ -32,6 +32,7 @@ function Form() {
   const [geocodingError, setGeocodingError] = useState('')
 
   useEffect(() => {
+    if (!lat || !lng) return
     const fetchCity = async () => {
       try {
         setIsLoadingGeocoding(true)
