@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom'
 import { useUrlPosition } from '../hooks/useUrlPosition.js'
 import Message from './Message.jsx'
 import Spinner from './Spinner.jsx'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -74,7 +76,12 @@ function Form() {
 
       <div className={styles.row}>
         <label htmlFor="date">When did you go to {cityName}?</label>
-        <input id="date" onChange={e => setDate(e.target.value)} value={date} />
+        <DatePicker
+          id={`date`}
+          onChange={date => setDate(date)}
+          selected={date}
+          dateFormat="dd/MM/yyyy"
+        />
       </div>
 
       <div className={styles.row}>
