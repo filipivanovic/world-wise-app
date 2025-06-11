@@ -49,7 +49,7 @@ const CitiesProvider = ({ children }) => {
         body: JSON.stringify(newCity)
       })
       const data = await response.json()
-      console.log(data)
+      setCities(city => [...city, data])
     } catch (error) {
       console.error(`Error in createCity method: ${error.message || error}`)
     } finally {
