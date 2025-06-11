@@ -54,6 +54,10 @@ function Form() {
     fetchCity()
   }, [lat, lng])
 
+  const handleSubmit = e => {
+    e.preventDefault()
+  }
+
   if (isLoadingGeocoding) return <Spinner />
 
   if (!lat || !lng) return <Message message="Start by clicking somewhere on the map" />
@@ -61,7 +65,7 @@ function Form() {
   if (isLoadingGeocoding) return <Message message={geocodingError} />
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input id="cityName" onChange={e => setCityName(e.target.value)} value={cityName} />
