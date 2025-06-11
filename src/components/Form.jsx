@@ -10,6 +10,7 @@ import Message from './Message.jsx'
 import Spinner from './Spinner.jsx'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { useCities } from '../context/CitiesContext.jsx'
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -24,6 +25,7 @@ const BASE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client'
 function Form() {
   const navigate = useNavigate()
   const [lat, lng] = useUrlPosition()
+  const { createCity } = useCities()
 
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false)
   const [cityName, setCityName] = useState('')
@@ -58,6 +60,20 @@ function Form() {
 
   const handleSubmit = e => {
     e.preventDefault()
+    if (!cityName || !date) return
+
+    const newCity = {
+      cityName,
+      country,
+      emoji,
+      date: date.toISOString(),
+      notes,
+      position: {
+        lat,
+        lng
+      }
+    }
+    createCity(newCity)
   }
 
   if (isLoadingGeocoding) return <Spinner />
