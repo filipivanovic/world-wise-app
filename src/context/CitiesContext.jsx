@@ -56,7 +56,7 @@ const reducer = (state, action) => {
 }
 
 const CitiesProvider = ({ children }) => {
-  const [{ cities, isLoading, currentCity }, dispatch] = useReducer(reducer, initialState)
+  const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -117,7 +117,7 @@ const CitiesProvider = ({ children }) => {
 
   return (
     <CitiesContext.Provider
-      value={{ cities, isLoading, currentCity, getCity, createCity, deleteCity }}
+      value={{ cities, isLoading, currentCity, error, getCity, createCity, deleteCity }}
     >
       {children}
     </CitiesContext.Provider>
