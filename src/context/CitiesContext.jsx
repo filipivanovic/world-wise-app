@@ -34,13 +34,15 @@ const reducer = (state, action) => {
       return {
         ...state,
         isLoading: false,
-        cities: [...state.cities, action.payload]
+        cities: [...state.cities, action.payload],
+        currentCity: action.payload
       }
     case 'city/deleted':
       return {
         ...state,
         isLoading: false,
-        cities: state.cities.filter(city => city !== action.payload)
+        cities: state.cities.filter(city => city !== action.payload),
+        currentCity: {}
       }
     case 'rejected':
       return {
