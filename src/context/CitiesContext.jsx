@@ -69,7 +69,7 @@ const CitiesProvider = ({ children }) => {
 
   const getCity = async id => {
     try {
-      setIsLoading(true)
+      dispatch({ type: 'loading' })
       const response = await fetch(`${BASE_URL}/cities/${id}`)
       const data = await response.json()
       setCurrentCity(data)
@@ -80,7 +80,7 @@ const CitiesProvider = ({ children }) => {
 
   const createCity = async newCity => {
     try {
-      setIsLoading(true)
+      dispatch({ type: 'loading' })
       const response = await fetch(`${BASE_URL}/cities`, {
         method: 'POST',
         headers: {
@@ -97,7 +97,7 @@ const CitiesProvider = ({ children }) => {
 
   const deleteCity = async id => {
     try {
-      setIsLoading(true)
+      dispatch({ type: 'loading' })
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: 'DELETE'
       })
