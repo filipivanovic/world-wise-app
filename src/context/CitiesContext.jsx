@@ -33,8 +33,18 @@ const reducer = (state, action) => {
         isLoading: false,
         currentCity: action.payload
       }
-    case 'cities/created':
-    case 'cities/deleted':
+    case 'city/created':
+      return {
+        ...state,
+        isLoading: false,
+        cities: [...state.cities, action.payload]
+      }
+    case 'city/deleted':
+      return {
+        ...state,
+        isLoading: false,
+        cities: state.cities.filter(city => city !== action.payload)
+      }
     case 'rejected':
       return {
         ...state,
@@ -72,9 +82,10 @@ const CitiesProvider = ({ children }) => {
       dispatch({ type: 'loading' })
       const response = await fetch(`${BASE_URL}/cities/${id}`)
       const data = await response.json()
-      setCurrentCity(data)
+      dispatch({ type: 'city/loaded', payload: data })
     } catch (error) {
       console.error(`Error in fetchCities method: ${error.message || error}`)
+      dispatch({ type: 'rejected', payload: error.message || error })
     }
   }
 
@@ -89,9 +100,10 @@ const CitiesProvider = ({ children }) => {
         body: JSON.stringify(newCity)
       })
       const data = await response.json()
-      setCities(city => [...city, data])
+      dispatch({ type: 'city/created', payload: data })
     } catch (error) {
       console.error(`Error in createCity method: ${error.message || error}`)
+      dispatch({ type: 'rejected', payload: error.message || error })
     }
   }
 
@@ -101,7 +113,7 @@ const CitiesProvider = ({ children }) => {
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: 'DELETE'
       })
-      setCities(cities => cities.filter(city => city !== id))
+      dispatch({ type: 'city/deleted', payload: id })
     } catch (error) {
       console.error(`Error in deleteCity method: ${error.message || error}`)
     }
