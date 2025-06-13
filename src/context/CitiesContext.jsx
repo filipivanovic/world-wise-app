@@ -9,9 +9,6 @@ const initialState = {
   isLoading: false,
   currentCity: {},
   error: ''
-  // getCity: () => {},
-  // createCity: () => {},
-  // deleteCity: () => {}
 }
 
 const reducer = (state, action) => {
@@ -58,9 +55,6 @@ const reducer = (state, action) => {
 
 const CitiesProvider = ({ children }) => {
   const [{ cities, isLoading, currentCity }, dispatch] = useReducer(reducer, initialState)
-  // const [cities, setCities] = useState([])
-  // const [isLoading, setIsLoading] = useState(false)
-  // const [currentCity, setCurrentCity] = useState({})
 
   useEffect(() => {
     const fetchCities = async () => {
