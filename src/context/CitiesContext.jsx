@@ -27,6 +27,12 @@ const reducer = (state, action) => {
         isLoading: false,
         cities: action.payload
       }
+    case 'city/loaded':
+      return {
+        ...state,
+        isLoading: false,
+        currentCity: action.payload
+      }
     case 'cities/created':
     case 'cities/deleted':
     case 'rejected':
@@ -69,8 +75,6 @@ const CitiesProvider = ({ children }) => {
       setCurrentCity(data)
     } catch (error) {
       console.error(`Error in fetchCities method: ${error.message || error}`)
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -88,8 +92,6 @@ const CitiesProvider = ({ children }) => {
       setCities(city => [...city, data])
     } catch (error) {
       console.error(`Error in createCity method: ${error.message || error}`)
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -102,8 +104,6 @@ const CitiesProvider = ({ children }) => {
       setCities(cities => cities.filter(city => city !== id))
     } catch (error) {
       console.error(`Error in deleteCity method: ${error.message || error}`)
-    } finally {
-      setIsLoading(false)
     }
   }
 
