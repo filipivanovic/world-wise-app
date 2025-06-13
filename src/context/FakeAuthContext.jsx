@@ -26,11 +26,24 @@ const reducer = (state, action) => {
   }
 }
 
+const FAKE_USER = {
+  name: 'Jack',
+  email: 'jack@example.com',
+  password: 'qwerty',
+  avatar: 'https://i.pravatar.cc/100?u=zz'
+}
+
 const AuthProvider = ({ children }) => {
   const [{ user, isAuthenticated }, dispatch] = useReducer(reducer, initialState)
 
-  const login = (email, password) => {}
-  const logout = () => {}
+  const login = (email, password) => {
+    if (email === FAKE_USER.email && password === FAKE_USER.password) {
+      dispatch({ type: 'login', payload: FAKE_USER })
+    }
+  }
+  const logout = () => {
+    dispatch({ type: 'logout' })
+  }
 
   return (
     <AuthContext.Provider value={(user, isAuthenticated, login, logout)}>
@@ -45,3 +58,5 @@ const useAuth = () => {
     throw new Error('useAuth must be used within a AuthProvider')
   }
 }
+
+export { AuthProvider, useAuth }
