@@ -1,3 +1,16 @@
 {
-  "cities": []
+  "cities": [
+    {
+      "id": "1c52",
+      "cityName": "Belgrade",
+      "country": "Serbia",
+      "emoji": "🇷🇸",
+      "date": "2025-06-13T21:27:36.261Z",
+      "notes": "top",
+      "position": {
+        "lat": "44.811070253260034",
+        "lng": "20.462036132812504"
+      }
+    }
+  ]
 }
