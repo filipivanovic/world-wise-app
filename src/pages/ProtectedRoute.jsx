@@ -11,7 +11,7 @@ const ProtectedRoute = ({ children }) => {
       navigate('/')
     }
   }, [isAuthenticated, navigate])
-  return children
+  return isAuthenticated ? children : null
 }
 
 export default ProtectedRoute
