@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={(user, isAuthenticated, login, logout)}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   )
@@ -57,6 +57,7 @@ const useAuth = () => {
   if (context === undefined) {
     throw new Error('useAuth must be used within a AuthProvider')
   }
+  return context
 }
 
 export { AuthProvider, useAuth }
